@@ -8,6 +8,7 @@ nodemon app.js
 
 # REGISTER USER
 @POST http://localhost:8000/register
+
 Input in BODY -> JSON CONTENT
 {
     "fname": "Mico",
