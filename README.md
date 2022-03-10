@@ -1,7 +1,7 @@
-# RUN npm install
+RUN npm install
 
-# I used ES6 Module here (package.json[type: "module"])
-# make sure the type is "module" in package.json when you run nodemon app.js
+I used ES6 Module here (package.json[type: "module"])
+Make sure the type is "module" in package.json when you run nodemon app.js
 nodemon app.js
 
 # APIs
