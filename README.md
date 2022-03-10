@@ -10,6 +10,7 @@ nodemon app.js
 @POST http://localhost:8000/register
 
 Input in BODY -> JSON CONTENT
+
 {
     "fname": "Mico",
     "lname": "Dioquino",
@@ -19,7 +20,9 @@ Input in BODY -> JSON CONTENT
 }
 
 # LOGIN USER
+
 @POST http://localhost:8000/login
+
 Input in BODY -> JSON CONTENT
 {
     "username": "admin",
@@ -34,7 +37,9 @@ Input in BODY -> JSON CONTENT
 
 # CREATE NEW USER
 @GET http://localhost:8000/users
+
 Input in BODY -> JSON CONTENT
+
 {
     "fname": "Mico",
     "lname": "Dioquino",
@@ -48,7 +53,9 @@ Input in BODY -> JSON CONTENT
 
 # UPDATE USER
 @PUT http://localhost:8000/users/:id
+
 Input in BODY -> JSON CONTENT
+
 {
     "fname": "Mico",
     "lname": "Dioquino",
@@ -65,7 +72,9 @@ Input in BODY -> JSON CONTENT
 
 # DELETE MULTIPLE USER
 @POST http://localhost:8000/users/delete
+
 Input in BODY -> JSON CONTENT
+
 {
     "ids": [1,2,3],
 }
