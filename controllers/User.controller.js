@@ -1,6 +1,8 @@
 import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs"
 
+// @GET
+// Get all users
 export const getAllUsers = async (req, res) => {
     try {
         const users = await UserModel.findAll()
@@ -10,6 +12,8 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
+// @GET
+// Get single user
 export const getUser = async (req, res) => {
     try {
         const user = await UserModel.findAll({
@@ -21,6 +25,8 @@ export const getUser = async (req, res) => {
     }
 }
 
+// @POST
+// Create new user
 export const createUser = async (req, res) => {
 
     const { fname, lname, username, contact, email, password, address, postal} = req.body
@@ -72,6 +78,8 @@ export const createUser = async (req, res) => {
     }
 }
 
+// @PUT
+// Update User
 export const updateUser = async (req, res) => {
     const { fname, lname, username, contact, email, password, address, postal} = req.body
 
@@ -113,13 +121,15 @@ export const updateUser = async (req, res) => {
     }
 }
 
+// @DELETE
+// Delete single user
 export const deleteUser = async (req, res) => {
 
     const userExists = await UserModel.findAll({
         where:{ id: [req.params.id]}
     })
 
-    if(!userExists){
+    if(userExists.length === 0){
         res.status(400)
         res.json({"message": "User is not exist"})
         return
@@ -127,7 +137,7 @@ export const deleteUser = async (req, res) => {
 
     try {
         await UserModel.destroy({
-            where:{ id: req.params.id }
+            where:{ id: [req.params.id] }
         })
         res.json({
             "message": "User successfully deleted"
@@ -136,3 +146,30 @@ export const deleteUser = async (req, res) => {
         res.json({message: error.message})
     }
 }
+
+// @POST
+// Delete multiple users
+export const multipleDeleteUser = async (req, res) => {
+
+    const userExists = await UserModel.findAll({
+        where:{ id: req.body.ids}
+    })
+
+    if(userExists.length === 0){
+        res.status(400)
+        res.json({"message": "Users are not exist"})
+        return
+    }
+
+    try {
+        await UserModel.destroy({
+            where:{ id: req.body.ids }
+        })
+        res.json({
+            "message": "Users [" + req.body.ids + "] successfully deleted"
+        })
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
